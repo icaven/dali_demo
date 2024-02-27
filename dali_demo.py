@@ -320,8 +320,8 @@ class ColourTransformer(object):
                                  tag=tag, cancel_callback=cancel_file_selection_callback,
                                  width=700, height=400):
                 dpg.add_file_extension("Video files (*.mov *.mp4){.mov,.mp4}", color=(0, 255, 255, 255))
-                dpg.add_file_extension("Image files (*.tif[f] *.jpg *.png){.tif,.tiff,.jpg,.png}",
-                                       color=(0, 255, 255, 255))
+                # dpg.add_file_extension("Image files (*.tif[f] *.jpg *.png){.tif,.tiff,.jpg,.png}",
+                #                        color=(0, 255, 255, 255))
                 
         create_file_dialog("file_dialog_id")
         
