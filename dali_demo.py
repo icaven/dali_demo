@@ -16,7 +16,7 @@ import os
 import pathlib
 import time
 from enum import IntEnum, auto
-from typing import Union, List
+from typing import Union, List, cast
 
 import numpy as np
 
@@ -141,7 +141,7 @@ def video_input_pipeline(filenames: Union[str, List[str]]):
                                            )
         return preflight_video
     
-    preflight_pipe = create_preflight_pipeline()
+    preflight_pipe = cast(nd.Pipeline, create_preflight_pipeline())
     preflight_pipe.build()
     all_frames = preflight_pipe.run()
     all_frames = all_frames[0].as_cpu().as_array()
@@ -207,8 +207,8 @@ class ColourTransformer(object):
         self.conversion_pipe_used: ConversionChoices = ConversionChoices.no_conversion
         self.cached_bt709_to_bt2020_pipeline: nd.Pipeline = bt709_to_bt2020_pipeline("current_input_frame")
         self.cached_bt709_to_bt2020_pipeline.build()
-        self.cached_hue_adjustment_pipeline: nd.Pipeline = hue_adjustment_pipeline("current_input_frame",
-                                                                                        "hue_adjustment_value")
+        self.cached_hue_adjustment_pipeline: nd.Pipeline = \
+            cast(nd.Pipeline, hue_adjustment_pipeline("current_input_frame", "hue_adjustment_value"))
                                                                 
         self.cached_hue_adjustment_pipeline.build()
     
